@@ -1,3 +1,13 @@
-# Build REST API with Express & Mongoose
+#Metadata storage api with node.js, express, mongoose, and MongoDB
 
-This is the source code of [my tutorial](https://rahmanfadhil.com/express-rest-api/)
+Ultra-simple NFT mapping for contract/token to IPFS hash
+
+Usage:
+
+- install MongoDB
+
+- use npm install in root of project directory
+
+- server runs on port 5000
+
+- use HTTP POST method to add a new token registration 

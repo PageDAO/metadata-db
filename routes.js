@@ -1,58 +1,58 @@
 const express = require("express");
-const Post = require("./models/Post");
+const Token = require("./models/Token");
 const router = express.Router();
 
-router.get("/posts", async (req, res) => {
+router.get("/tokens", async (req, res) => {
   const posts = await Post.find();
   res.send(posts);
 });
 
-router.post("/posts", async (req, res) => {
-  const post = new Post({
+router.post("/tokens", async (req, res) => {
+  const token = new Token({
     title: req.body.title,
     content: req.body.content
   });
-  await post.save();
-  res.send(post);
+  await token.save();
+  res.send(token);
 });
 
-router.get("/posts/:id", async (req, res) => {
+router.get("/token/:id", async (req, res) => {
   try {
-    const post = await Post.findOne({ _id: req.params.id });
-    res.send(post);
+    const token = await Token.findOne({ _id: req.params.id });
+    res.send(token);
   } catch {
     res.status(404);
-    res.send({ error: "Post doesn't exist!" });
+    res.send({ error: "Token doesn't exist!" });
   }
 });
 
-router.patch("/posts/:id", async (req, res) => {
+router.patch("/token/:id", async (req, res) => {
   try {
-    const post = await Post.findOne({ _id: req.params.id });
+    const token = await Token.findOne({ _id: req.params.id });
 
     if (req.body.title) {
-      post.title = req.body.title;
+      token.title = req.body.title;
     }
 
     if (req.body.content) {
-      post.content = req.body.content;
+      token.content = req.body.content;
     }
 
-    await post.save();
-    res.send(post);
+    await token.save();
+    res.send(token);
   } catch {
     res.status(404);
-    res.send({ error: "Post doesn't exist!" });
+    res.send({ error: "Token doesn't exist!" });
   }
 });
 
-router.delete("/posts/:id", async (req, res) => {
+router.delete("/tokens/:id", async (req, res) => {
   try {
-    await Post.deleteOne({ _id: req.params.id });
+    await Token.deleteOne({ _id: req.params.id });
     res.status(204).send();
   } catch {
     res.status(404);
-    res.send({ error: "Post doesn't exist!" });
+    res.send({ error: "Token doesn't exist!" });
   }
 });
 
